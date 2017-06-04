@@ -148,7 +148,7 @@ DELIMETER;
       $total+=$subtotal;
       echo $item_quantity;
 
-    }
+     }
   }
   }
   }
