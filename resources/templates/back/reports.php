@@ -11,15 +11,18 @@
 
       <tr>
            <th>Id</th>
-           <th>Title</th>
-           <th>Category</th>
+           <th>Product ID</th>
+           <th>Order ID</th>
+           <th>Product title</th>
            <th>Price</th>
-           <th>Quanity</th>
+
+           <th>Product quantity</th>
+
       </tr>
     </thead>
     <tbody>
 
-      <?php get_products_in_admin(); ?>
+      <?php get_reports(); ?>
 
 
 

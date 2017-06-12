@@ -7,19 +7,7 @@
 
             <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
-                        </ol>
-                    </div>
-                </div>
+
                 <!-- /.row -->
 
               <?php
@@ -34,6 +22,9 @@
               if(isset($_GET['add_product'])){
                 include(TEMPLATE_BACK.DS."add_product.php");
               }
+              if(isset($_GET['edit_product'])){
+                include(TEMPLATE_BACK.DS."edit_product.php");
+              }
               if(isset($_GET['categories'])){
                 include(TEMPLATE_BACK.DS."categories.php");
               }
@@ -42,6 +33,15 @@
               }
               if(isset($_GET['users'])){
                 include(TEMPLATE_BACK.DS."users.php");
+              }
+              if(isset($_GET['add_user'])){
+                include(TEMPLATE_BACK.DS."add_user.php");
+              }
+              if(isset($_GET['edit_user'])){
+                include(TEMPLATE_BACK.DS."edit_user.php");
+              }
+              if(isset($_GET['reports'])){
+                include(TEMPLATE_BACK.DS."reports.php");
               }
                ?>
 
