@@ -42,7 +42,7 @@ function escape_string($string){
 
 function fetch_array($result){
 
-  return mysqli_fetch_array($result); //
+  return mysqli_fetch_array($result);
 }
 //******************************** FRONT END FUNCTIONS ************************************
 //get products
@@ -670,5 +670,193 @@ echo $product;
 
 
 }
+
+
+
+
+/******************Slides Functions *******************/
+
+function add_slides() {
+
+
+if(isset($_POST['add_slide'])) {
+
+
+$slide_title        = escape_string($_POST['slide_title']);
+$slide_image        = escape_string($_FILES['file']['name']);
+$slide_image_loc    = escape_string($_FILES['file']['tmp_name']);
+
+
+if(empty($slide_title) || empty($slide_image)) {
+
+echo "<p class='bg-danger'>This field cannot be empty</p>";
+
+
+} else {
+
+
+
+move_uploaded_file($slide_image_loc, UPLOAD_DIRECTORY . DS . $slide_image);
+
+$query = query("INSERT INTO slides(slide_title, slide_image) VALUES('{$slide_title}', '{$slide_image}')");
+confirm($query);
+set_message("Slide Added");
+redirect("index.php?slides");
+
+
+
+
+
+                }
+
+
+        }
+
+
+}
+
+
+
+function get_current_slide_in_admin(){
+
+$query = query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+confirm($query);
+
+while($row = fetch_array($query)) {
+
+$slide_image = display_image($row['slide_image']);
+
+$slide_active_admin = <<<DELIMETER
+
+
+
+    <img class="img-responsive" src="../../resources/{$slide_image}" alt="">
+
+
+
+DELIMETER;
+
+echo $slide_active_admin;
+
+
+    }
+
+
+
+}
+
+
+
+
+function get_active_slide() {
+
+$query = query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+confirm($query);
+
+
+
+while($row = fetch_array($query)) {
+
+$slide_image = display_image($row['slide_image']);
+
+$slide_active = <<<DELIMETER
+
+
+ <div class="item active">
+    <img class="slide-image" src="../resources/{$slide_image}" alt="">
+</div>
+
+
+DELIMETER;
+
+echo $slide_active;
+
+
+    }
+
+}
+
+
+
+function get_slides() {
+
+$query = query("SELECT * FROM slides");
+confirm($query);
+
+
+
+while($row = fetch_array($query)) {
+
+$slide_image = display_image($row['slide_image']);
+
+$slides = <<<DELIMETER
+
+
+ <div class="item">
+    <img class="slide-image" src="../resources/{$slide_image}" alt="">
+</div>
+
+
+DELIMETER;
+
+echo $slides;
+
+
+
+
+}
+
+
+
+
+
+}
+
+
+function get_slide_thumbnails(){
+
+
+$query = query("SELECT * FROM slides ORDER BY slide_id ASC ");
+confirm($query);
+
+while($row = fetch_array($query)) {
+
+$slide_image = display_image($row['slide_image']);
+
+$slide_thumb_admin = <<<DELIMETER
+
+
+<div class="col-xs-6 col-md-3 image_container">
+
+    <a href="index.php?delete_slide_id={$row['slide_id']}">
+
+         <img  class="img-responsive slide_image" src="../../resources/{$slide_image}" alt="">
+
+
+    </a>
+
+    <div class="caption">
+
+    <p>{$row['slide_title']}</p>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+DELIMETER;
+
+echo $slide_thumb_admin;
+
+
+    }
+
+}
+
 
 ?>
