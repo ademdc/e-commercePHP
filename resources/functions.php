@@ -42,7 +42,7 @@ function escape_string($string){
 
 function fetch_array($result){
 
-  return mysqli_fetch_array($result);
+  return mysqli_fetch_array($result); //
 }
 //******************************** FRONT END FUNCTIONS ************************************
 //get products
