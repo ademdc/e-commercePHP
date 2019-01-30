@@ -1,1 +1,1 @@
-e-commerce app with PHP, MySQL
+E-commerce app with PHP, MySQL 
